@@ -6,6 +6,14 @@
     "type": "project",
     "require": {
         "php": "^7.3|^8.0",
+        "any-downloader/download-manager": "dev-master",
+        "any-downloader/instagram-downloader": "dev-master",
+        "any-downloader/pinterest-downloader": "dev-master",
+        "any-downloader/reddit-downloader": "dev-master",
+        "any-downloader/redgifs-downloader": "dev-master",
+        "any-downloader/tiktok-downloader": "dev-master",
+        "any-downloader/twitter-downloader": "dev-master",
+        "any-downloader/youtube-downloader": "dev-master",
         "laravel/lumen-framework": "^8.0"
     },
     "require-dev": {
