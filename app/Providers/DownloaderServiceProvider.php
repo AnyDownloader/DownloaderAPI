@@ -47,14 +47,18 @@ class DownloaderServiceProvider extends ServiceProvider
                 'version' => 'latest'
             ]);
             $downloadManager = new DownloadManager();
-            $igHandler = new InstagramHandler($client);
-            $pinHandler = new PinterestHandler($client);
-            $redHandler = new RedGifsHandler($client);
             $httpClient = HttpClient::create();
-            $ytHandler = new YouTubeHandler($httpClient);
-            $redditHandler = new RedditHandler($httpClient);
+            $downloadManager->addHandler(new YouTubeHandler($httpClient));
+            $downloadManager->addHandler(new PinterestHandler($client));
+            $downloadManager->addHandler(new RedditHandler($httpClient));
+            $downloadManager->addHandler(new TwitterHandler(new TwitterOAuth(env('TWITTER_CONSUMER_KEY'), env('TWITTER_CONSUMER_SECRET'))));
+
+            /**
+             * Content from the following sources is caching to S3 and MySQL
+             */
+            $igHandler = new InstagramHandler($client);
+            $redHandler = new RedGifsHandler($client);
             $tiktokHandler = new TikTokHandler($httpClient);
-            $tw = new TwitterHandler(new TwitterOAuth(env('TWITTER_CONSUMER_KEY'), env('TWITTER_CONSUMER_SECRET')));
             try {
                 if (!$s3Client->doesBucketExist(env('AWS_INSTAGRAM_BUCKET'))) {
                     $s3Client->createBucket(['Bucket' => env('AWS_INSTAGRAM_BUCKET')]);
@@ -65,18 +69,14 @@ class DownloaderServiceProvider extends ServiceProvider
                 if (!$s3Client->doesBucketExist(env('AWS_REDGIFS_BUCKET'))) {
                     $s3Client->createBucket(['Bucket' => env('AWS_REDGIFS_BUCKET')]);
                 }
-                $downloadManager->addHandler(new MySQLCachingHandler($igHandler, new S3Storage($s3Client, 'instagram')));
-                $downloadManager->addHandler(new MySQLCachingHandler($redHandler, new S3Storage($s3Client, 'redgifs')));
-                $downloadManager->addHandler(new MySQLCachingHandler($tiktokHandler, new S3Storage($s3Client, 'tiktok')));
+                $downloadManager->addHandler(new MySQLCachingHandler($igHandler, new S3Storage($s3Client, env('AWS_INSTAGRAM_BUCKET'))));
+                $downloadManager->addHandler(new MySQLCachingHandler($redHandler, new S3Storage($s3Client, env('AWS_REDGIFS_BUCKET'))));
+                $downloadManager->addHandler(new MySQLCachingHandler($tiktokHandler, new S3Storage($s3Client, env('AWS_TIKTOK_BUCKET'))));
             } catch (S3Exception $e) {
                 $downloadManager->addHandler($igHandler);
                 $downloadManager->addHandler($redHandler);
                 $downloadManager->addHandler($tiktokHandler);
             }
-            $downloadManager->addHandler($ytHandler);
-            $downloadManager->addHandler($pinHandler);
-            $downloadManager->addHandler($tw);
-            $downloadManager->addHandler($redditHandler);
 
             return $downloadManager;
         });
