@@ -7,6 +7,7 @@ use AnyDownloader\DownloadManager\Exception\HandlerNotFoundException;
 use AnyDownloader\DownloadManager\Exception\NothingToExtractException;
 use AnyDownloader\DownloadManager\Exception\NotValidUrlException;
 use AnyDownloader\DownloadManager\Model\URL;
+use App\DownloadManager\MySQLCachingHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -27,8 +28,10 @@ class DownloadManager extends Controller
      */
     public function __construct(Downloader $downloader)
     {
+        /** @var MySQLCachingHandler downloader */
         $this->downloader = $downloader;
     }
+
 
     /**
      * @param Request $request
@@ -37,9 +40,9 @@ class DownloadManager extends Controller
      */
     public function fetch(Request $request): JsonResponse
     {
-        $this->validate($request, ['link' => 'required|string']);
+        $this->validate($request, ['url' => 'required|string']);
         try {
-            $url = URL::fromString($request->get('link'));
+            $url = URL::fromString($request->get('url'));
             $resource = $this->downloader->fetchResource($url);
         } catch(HandlerNotFoundException $e) {
             return new JsonResponse(['message' => 'We don\'t support this service'], self::HTTP_ERROR_STATUS_CODE);
