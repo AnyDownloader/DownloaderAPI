@@ -9,7 +9,23 @@ Just specify URL and get unified JSON model with videos, images, texts, hashtags
 
 | Method | URI | Params | Response |
 | ------ | --- | ------ | -------- | 
-| GET | /api/resource | url | see example below|
+| GET | /api/resource | url | see example at the end|
+
+## List of supported sources
+
+-   [RedGifs Video Downloader](https://github.com/AnyDownloader/RedGifsDownloader)
+-   [Reddit Video Downloader](https://github.com/AnyDownloader/RedditDownloader)
+-   [Twitter Video Downloader](https://github.com/AnyDownloader/TwitterDownloader)
+-   [Instagram Image/Video Post Downloader](https://github.com/AnyDownloader/InstagramDownloader)
+-   [Pinterest Image/Video Downloader](https://github.com/AnyDownloader/PinterestDownloader)
+-   [YouTube Audio/Video/Thumbnail/Subtitles Downloader](https://github.com/AnyDownloader/YouTubeDownloader)
+-   [TikTok Audio/Video Downloader](https://github.com/AnyDownloader/TikTokDownloader)
+
+## Configuration
+
+This application supports caching of media contents to S3 with persisting data in MySQL
+
+By default, only Instagram, TikTok, and RedGifs files are caching. In [DownloaderServiceProvider](https://github.com/AnyDownloader/DownloaderAPI/blob/master/app/Providers/DownloaderServiceProvider.php) you can customize which handlers to use and contents from which sources to cache.
 
 
 #### GET /api/resource?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DzrMW2Gs6Egg
@@ -106,19 +122,3 @@ Just specify URL and get unified JSON model with videos, images, texts, hashtags
   message: "success"
 }
 ```
-
-## List of supported sources
-
--   [RedGifs Video Downloader](https://github.com/AnyDownloader/RedGifsDownloader)
--   [Reddit Video Downloader](https://github.com/AnyDownloader/RedditDownloader)
--   [Twitter Video Downloader](https://github.com/AnyDownloader/TwitterDownloader)
--   [Instagram Image/Video Post Downloader](https://github.com/AnyDownloader/InstagramDownloader)
--   [Pinterest Image/Video Downloader](https://github.com/AnyDownloader/PinterestDownloader)
--   [YouTube Audio/Video/Thumbnail/Subtitles Downloader](https://github.com/AnyDownloader/YouTubeDownloader)
--   [TikTok Audio/Video Downloader](https://github.com/AnyDownloader/TikTokDownloader)
-
-## Configuration
-
-This application supports caching of media contents to S3 with persisting data in MySQL
-
-By default, only Instagram, TikTok, and RedGifs files are caching. In [DownloaderServiceProvider](https://github.com/AnyDownloader/DownloaderAPI/blob/master/app/Providers/DownloaderServiceProvider.php) you can customize which handlers to use and contents from which sources to cache.
