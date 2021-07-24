@@ -21,7 +21,7 @@ $router->group(['prefix' => 'api', 'middleware' => []], function () use ($router
     $router->get(
         '/resource',
         [
-            'uses' => '\App\Http\Controllers\DownloadManager@fetch'
+            'uses' => '\App\Http\Controllers\FetchResourceController@fetch'
         ]
     );
 });

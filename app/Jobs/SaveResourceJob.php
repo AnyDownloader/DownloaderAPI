@@ -65,7 +65,6 @@ class SaveResourceJob extends Job
                     $authorModel->avatar_url = $author['avatar']['url'];
                 }
                 $authorModel->save();
-
             }
             $resource->author_id = $authorModel->id;
         }

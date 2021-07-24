@@ -12,7 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-class DownloadManager extends Controller
+class FetchResourceController extends Controller
 {
     const HTTP_ERROR_STATUS_CODE = 410;
 
