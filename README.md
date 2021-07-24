@@ -9,7 +9,103 @@ Just specify URL and get unified JSON model with videos, images, texts, hashtags
 
 | Method | URI | Params | Response |
 | ------ | --- | ------ | -------- | 
-| GET | /api/resource | url | look [here](https://github.com/AnyDownloader/DownloadManager/blob/master/src/Model/FetchedResource.php#L128L138) or screenshot below|
+| GET | /api/resource | url | see example below|
+
+
+#### GET /api/resource?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DzrMW2Gs6Egg
+```yaml
+{
+  data: {
+    ext_source: "youtube",
+    source_url: "https://www.youtube.com/watch?v=zrMW2Gs6Egg",
+    preview_image: {
+      type: "image",
+      format: "jpg",
+      url: "https://i.ytimg.com/vi/zrMW2Gs6Egg/maxresdefault.jpg",
+      mime_type: "image/jpg",
+      title: "1920x1080"
+    },
+    preview_video: {
+      type: "video",
+      format: "mp4",
+      url: "https://r4---sn-w5nuxa-c33ls.googlevideo.com/videoplayback?.........",
+      mime_type: "video/mp4",
+      title: "720p"
+    },
+    attributes: {
+      title: "Ari Shaffir on Tom Segura's Dunk Injury",
+      hashtags: [
+        "Joe Rogan Experience",
+        "JRE",
+        "Joe",
+        "Rogan",
+        "podcast",
+        "MMA",
+        "comedy",
+        "stand",
+        "up",
+        "funny",
+        "Freak",
+        "Party"
+      ],
+      views_count: "415191",
+      author: {
+        id: "UCzQUP1qoWDoEbmsQxvdjxgQ",
+        avatar_url: null,
+        full_name: "PowerfulJRE",
+        nickname: "PowerfulJRE",
+        avatar: null
+      }
+    },
+    items: {
+      image: [
+        {
+          type: "image",
+          format: "jpg",
+          url: "https://i.ytimg.com/vi/zrMW2Gs6Egg/maxresdefault.jpg",
+          mime_type: "image/jpg",
+          title: "1920x1080"
+        }
+        ],
+      text: [
+        {
+          type: "text",
+          format: "xml",
+          url: "https://www.youtube.com/api/timedtext?....",
+          mime_type: "text/xml",
+          title: "en"
+        }
+      ],
+      video: [
+        {
+          type: "video",
+          format: "mp4",
+          url: "https://r4---sn-w5nuxa-c33ls.googlevideo.com/videoplayback?...",
+          mime_type: "video/mp4",
+          title: "360p"
+        },
+        {
+          type: "video",
+          format: "mp4",
+          url: "https://r4---sn-w5nuxa-c33ls.googlevideo.com/videoplayback?...",
+          mime_type: "video/mp4",
+          title: "720p"
+        }
+      ],
+      audio: [
+        {
+          type: "audio",
+          format: "mp4",
+          url: "https://r4---sn-w5nuxa-c33ls.googlevideo.com/videoplayback?...",
+          mime_type: "audio/mp4",
+          title: "130327"
+        }
+      ]
+    }
+  },
+  message: "success"
+}
+```
 
 ## List of supported sources
 
