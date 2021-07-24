@@ -48,7 +48,7 @@ class SaveResourceJob extends Job
         /**
          * Save author
          */
-        if ($fetchedResourceArr['attributes']['author']) {
+        if (isset($fetchedResourceArr['attributes']['author'])) {
             $author = $fetchedResourceArr['attributes']['author'];
             $authorModel =
                 Author::where(['ext_id' => $author['id'], 'ext_source' => $fetchedResourceArr['ext_source']])

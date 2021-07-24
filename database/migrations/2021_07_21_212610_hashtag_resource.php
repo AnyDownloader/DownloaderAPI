@@ -17,7 +17,6 @@ class HashtagResource extends Migration
             $table->id();
             $table->integer('hashtag_id')->index();
             $table->integer('resource_id')->index();
-            $table->timestamps();
         });
     }
 
