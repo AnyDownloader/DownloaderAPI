@@ -6,14 +6,7 @@
     "type": "project",
     "require": {
         "php": "^7.3|^8.0",
-        "any-downloader/download-manager": "dev-master",
-        "any-downloader/instagram-downloader": "dev-master",
-        "any-downloader/pinterest-downloader": "dev-master",
-        "any-downloader/reddit-downloader": "dev-master",
-        "any-downloader/redgifs-downloader": "dev-master",
-        "any-downloader/tiktok-downloader": "dev-master",
-        "any-downloader/twitter-downloader": "dev-master",
-        "any-downloader/youtube-downloader": "dev-master",
+        "any-downloader/laravel-downloader-api": "dev-master",
         "illuminate/redis": "^8.51",
         "laravel/lumen-framework": "^8.0",
         "predis/predis": "~1.0"

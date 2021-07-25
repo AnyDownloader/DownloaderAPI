@@ -16,12 +16,3 @@
 $router->get('/', function () use ($router) {
     return response('')->setStatusCode(403);
 });
-
-$router->group(['prefix' => 'api', 'middleware' => []], function () use ($router) {
-    $router->get(
-        '/resource',
-        [
-            'uses' => '\App\Http\Controllers\FetchResourceController@fetch'
-        ]
-    );
-});
