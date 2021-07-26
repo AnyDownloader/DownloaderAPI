@@ -1,4 +1,4 @@
-** Lumen + Laravel-DownloaderAPI
+# Lumen + Laravel-DownloaderAPI
 
 This is ready-to-use Lumen Application with installed [Laravel-DownloaderAPI](https://github.com/AnyDownloader/Laravel-DownloaderAPI) package
 
