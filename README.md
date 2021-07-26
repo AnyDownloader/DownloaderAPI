@@ -16,4 +16,4 @@ php artisan migrate
 
 Enjoy!
 
-More info such as endpoints, examples, configuration, etc, you can find in [Laravel-DownloaderAPI](https://github.com/AnyDownloader/Laravel-DownloaderAPI) repository
+More info about endpoints, examples, configuration, etc, you can find in [Laravel-DownloaderAPI](https://github.com/AnyDownloader/Laravel-DownloaderAPI) repository
