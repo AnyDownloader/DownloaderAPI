@@ -14,7 +14,7 @@ use AnyDownloader\RedGifsDownloader\RedGifsHandler;
 use AnyDownloader\TikTokDownloader\TikTokHandler;
 use AnyDownloader\TwitterDownloader\TwitterHandler;
 use AnyDownloader\YouTubeDownloader\YouTubeHandler;
-use App\LaravelDownloaderAPI\MySQLCachingHandler;
+use App\LaravelDownloaderAPI\DBCachingHandler;
 use Aws\S3\Exception\S3Exception;
 use Aws\S3\S3Client;
 use Goutte\Client;
@@ -23,14 +23,6 @@ use Symfony\Component\HttpClient\HttpClient;
 
 class DownloaderServiceProvider extends ServiceProvider
 {
-    /**
-     * Register DownloadManager with needed handlers
-     *
-     * @return void
-     */
-    public function boot()
-    {
-    }
 
     public function register()
     {
@@ -38,10 +30,10 @@ class DownloaderServiceProvider extends ServiceProvider
         if (!is_array($handlers) || empty($handlers)) {
             return;
         }
+
         $this->app->singleton(Downloader::class, function() use ($handlers) {
             $client = new Client();
             $httpClient = HttpClient::create();
-
 
             if ($handlers['instagram']['on']) {
                 $handlers['instagram']['instance'] = new InstagramHandler($client);
@@ -86,14 +78,14 @@ class DownloaderServiceProvider extends ServiceProvider
                     if (!$handler['instance'] instanceof BaseHandler) {
                         continue;
                     }
-                    if (isset($handler['bucket'])) {
+                    if (isset($handler['bucket']) && $handler['bucket']) {
                         if (is_null($s3Client)) {
                             $s3Client = new S3Client(config('anydownloader.s3'));
                         }
                         if (!$s3Client->doesBucketExist($handler['bucket'])) {
                             $s3Client->createBucket(['Bucket' => $handler['bucket']]);
                         }
-                        $handler['instance'] = new MySQLCachingHandler(
+                        $handler['instance'] = new DBCachingHandler(
                             clone $handler['instance'],
                             new S3Storage($s3Client, $handler['bucket'])
                         );

@@ -9,7 +9,7 @@ use AnyDownloader\DownloadManager\Model\URL;
 use App\LaravelDownloaderAPI\Jobs\SaveResourceJob;
 use App\LaravelDownloaderAPI\Models\Resource;
 
-class MySQLCachingHandler extends CachingHandler
+class DBCachingHandler extends CachingHandler
 {
     /**
      * @param URL $url

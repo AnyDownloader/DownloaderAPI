@@ -16,7 +16,7 @@ class Hashtag extends Model
     /**
      * @var string
      */
-    protected $table = 'downloader_author';
+    protected $table = 'downloader_hashtags';
 
     /**
      * The attributes that are mass assignable.
