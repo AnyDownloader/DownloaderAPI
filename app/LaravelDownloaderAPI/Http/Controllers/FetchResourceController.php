@@ -7,10 +7,10 @@ use AnyDownloader\DownloadManager\Exception\HandlerNotFoundException;
 use AnyDownloader\DownloadManager\Exception\NothingToExtractException;
 use AnyDownloader\DownloadManager\Exception\NotValidUrlException;
 use AnyDownloader\DownloadManager\Model\URL;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-use Laravel\Lumen\Routing\Controller;
 
 class FetchResourceController extends Controller
 {
