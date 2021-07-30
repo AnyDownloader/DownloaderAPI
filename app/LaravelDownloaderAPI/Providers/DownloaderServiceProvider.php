@@ -94,7 +94,7 @@ class DownloaderServiceProvider extends ServiceProvider
                 }
             } catch (S3Exception $e) {
                 foreach($handlers as $handler) {
-                    $downloadManager->addHandler($handler);
+                    $downloadManager->addHandler($handler['instance']);
                 }
             }
 
