@@ -7,15 +7,18 @@ return [
     'handlers' => [
         'instagram' => [
             'on' => env('DOWNLOADER_INSTAGRAM_ON', true),
-            'bucket' => env('DOWNLOADER_INSTAGRAM_BUCKET', 'instagram')
+            'bucket' => env('DOWNLOADER_INSTAGRAM_BUCKET', 'instagram'),
+            'cdn_alias' => env('DOWNLOADER_INSTAGRAM_CDN_ALIAS', '')
         ],
         'tiktok' => [
             'on' => env('DOWNLOADER_TIKTOK_ON', true),
-            'bucket' => env('DOWNLOADER_TIKTOK_BUCKET', 'tiktok')
+            'bucket' => env('DOWNLOADER_TIKTOK_BUCKET', 'tiktok'),
+            'cdn_alias' => env('DOWNLOADER_TIKTOK_CDN_ALIAS', '')
         ],
         'redgifs' => [
             'on' => env('DOWNLOADER_REDGIFS_ON', true),
-            'bucket' => env('DOWNLOADER_REDGIFS_BUCKET', 'redgifs')
+            'bucket' => env('DOWNLOADER_REDGIFS_BUCKET', 'redgifs'),
+            'cdn_alias' => env('DOWNLOADER_REDGIFS_CDN_ALIAS', '')
         ],
         'twitter' => [
             'on' => env('DOWNLOADER_TWITTER_ON', true)

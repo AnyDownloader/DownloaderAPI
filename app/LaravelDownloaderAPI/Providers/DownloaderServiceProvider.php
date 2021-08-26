@@ -87,7 +87,7 @@ class DownloaderServiceProvider extends ServiceProvider
                         }
                         $handler['instance'] = new DBCachingHandler(
                             clone $handler['instance'],
-                            new S3Storage($s3Client, $handler['bucket'])
+                            new S3Storage($s3Client, $handler['bucket'], $handler['cdn_alias'] ?? '')
                         );
                     }
                     $downloadManager->addHandler($handler['instance']);
