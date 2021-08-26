@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": ">=7.2.5",
         "any-downloader/laravel-downloader-api": "dev-master",
         "illuminate/redis": "^8.51",
         "laravel/lumen-framework": "^8.0",
